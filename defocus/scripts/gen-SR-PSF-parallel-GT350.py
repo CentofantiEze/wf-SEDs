@@ -23,10 +23,10 @@ No defocused stars are saved for testing. No defocused stars are saved in x3 res
 SED_path = '/feynman/work/dap/lcs/ec270266/wf-psf/data/SEDs/save_SEDs/'     # Feynman
 
 # Output saving path (in node05 of candide or $WORK space on feynman)
-output_folder = '/feynman/work/dap/lcs/ec270266/output/interp_SEDs/'          # Feynman
+output_folder = '/feynman/work/dap/lcs/ec270266/output/defocus_dataset/'          # Feynman
 
 # Reference dataset PATH
-reference_data = '../interp_SED_data/reference_dataset/'
+reference_data = '../../interp_SED_model/interp_SED_data/reference_dataset/'
 ref_train = 'train_Euclid_res_2000_TrainStars_id_001.npy'
 ref_test  = 'test_Euclid_res_id_001.npy'
 selected_id_SED_path = 'selected_id_SED.npy'
@@ -41,7 +41,7 @@ sys.stdout = log_file
 print('Starting the log file.')
 
 # Dataset ID
-dataset_id = 9
+dataset_id = 10
 dataset_id_str = '%03d'%(dataset_id)
 
 # This list must be in order from bigger to smaller
@@ -350,7 +350,7 @@ for poly_psf_np, zernike_coef_np, super_psf_np, plus_defocus_psf_np, plus_defocu
                         'C_poly' : C_poly,
                         'parameters': dataset_params}
 
-    np.save(output_folder + 'test_Euclid_res_id_' + dataset_id_str + 'GT_350_bins.npy',
+    np.save(output_folder + 'test_Euclid_res_id_' + dataset_id_str + 'GT_350_bins_defocus.npy',
             test_psf_dataset, allow_pickle=True)
 
 
@@ -381,7 +381,7 @@ for poly_psf_np, zernike_coef_np, super_psf_np, plus_defocus_psf_np, plus_defocu
                          'negative_defocused_stars': noisy_train_minus_D_stars[:n_train_stars, :, :]}
 
 
-        np.save(output_folder + 'train_Euclid_res_' + str(n_train_stars) + '_TrainStars_id_' + dataset_id_str + 'GT_350_bins.npy',
+        np.save(output_folder + 'train_Euclid_res_' + str(n_train_stars) + '_TrainStars_id_' + dataset_id_str + 'GT_350_bins_defocus.npy',
                 train_psf_dataset, allow_pickle=True)
 
     # Next desired resolution   
