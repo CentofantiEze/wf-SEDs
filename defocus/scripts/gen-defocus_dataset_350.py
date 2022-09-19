@@ -320,7 +320,7 @@ noisy_train_patterns_minus_D = noisy_train_stars - train_stars
 WFE_res_id = 0
 
 # Generate datasets for every WFE resolution
-for poly_psf_np, zernike_coef_np, super_psf_np, plus_defocus_psf_np, plus_defocus_psf_np in zip(poly_psf_multires, zernike_coef_multires, super_psf_multires, plus_defocus_psf_multires, minus_defocus_psf_multires):
+for poly_psf_np, zernike_coef_np, super_psf_np, plus_defocus_psf_np, minus_defocus_psf_np in zip(poly_psf_multires, zernike_coef_multires, super_psf_multires, plus_defocus_psf_multires, minus_defocus_psf_multires):
     
     # Generate numpy array from the SED list
     SED_np = np.array(SED_list)
@@ -328,7 +328,7 @@ for poly_psf_np, zernike_coef_np, super_psf_np, plus_defocus_psf_np, plus_defocu
     # Add same noise dataset to each WFE-resolution dataset
     noisy_train_stars = np.copy(poly_psf_np[:tot_train_stars, :, :]) + noisy_train_patterns
     noisy_train_plus_D_stars = np.copy(plus_defocus_psf_np[:tot_train_stars, :, :]) + noisy_train_patterns_plus_D
-    noisy_train_minus_D_stars = np.copy(plus_defocus_psf_np[:tot_train_stars, :, :]) + noisy_train_patterns_minus_D
+    noisy_train_minus_D_stars = np.copy(minus_defocus_psf_np[:tot_train_stars, :, :]) + noisy_train_patterns_minus_D
 
     # Save only one test dataset
     # Build param dicitionary
