@@ -31,6 +31,8 @@ opt[2]="--id_name _5_cycles_256_eval_param_no_proj_proj_end_d2_45z_2 --project_d
 opt[3]="--id_name _5_cycles_256_eval_param_no_proj_proj_end_d2_45z_3 --project_dd_features True --d_max 2 --n_zernikes 45 --chkp_save_path /gpfswork/rech/ynx/uds36vp/repos/wf-SEDs/HD_projected_optimisation/wf-outputs/chkp/8_bins/chkp_callback_poly_5_cycles_256_no_proj_d2_45z_3_cycle5"
 opt[4]="--id_name _5_cycles_256_eval_param_no_proj_proj_end_d2_45z_4 --project_dd_features True --d_max 2 --n_zernikes 45 --chkp_save_path /gpfswork/rech/ynx/uds36vp/repos/wf-SEDs/HD_projected_optimisation/wf-outputs/chkp/8_bins/chkp_callback_poly_5_cycles_256_no_proj_d2_45z_4_cycle5"
 
+opt_str[0]="10 5 5 5 15"
+
 cd $WORK/repos/wf-SEDs/HD_projected_optimisation/scripts/
 
 srun python -u ./train_project_click_multi_cycle.py \
@@ -42,7 +44,7 @@ srun python -u ./train_project_click_multi_cycle.py \
     --plot_opt True \
     --opt_stars_rel_pix_rmse True \
     --pupil_diameter 256 \
-    --n_epochs_param_multi_cycle "10 5 5 5 15" \
+    --n_epochs_param_multi_cycle ${opt_str[$SLURM_ARRAY_TASK_ID]} \
     --n_epochs_non_param_multi_cycle "25 25 25 25 50" \
     --l_rate_non_param_multi_cycle "0.1 0.09 0.08 0.07 0.06" \
     --l_rate_param_multi_cycle "0.01 0.0085 0.007 0.0055 0.004" \
